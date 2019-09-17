@@ -1,7 +1,7 @@
 Kelompok 5 :
 
-Refandra Bramandika M.A [Ketua]
-Muhammad Zainul Ansori [Anggota]
-Famri Priambodo [Anggota]
-Dimas Fajrul F. [Anggota]
-Frengki E. [Anggota]
+Refandra Bramandika M.A [Ketua]<br>
+Muhammad Zainul Ansori [Anggota]<br>
+Famri Priambodo [Anggota]<br>
+Dimas Fajrul F. [Anggota]<br>
+Frengki E. [Anggota]<br>
