@@ -1,70 +1,61 @@
-<?php
-@session_start();
-include "koneksi.php";
-
-if(@$_SESSION['admin'] || @$_SESSION['operator']) {
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Halaman Utama</title>
-	<link rel="stylesheet" href='../css/main.css'/>
-
+	<title>Membuat CRUD Dengan PHP Dan MySQL - Menampilkan data dari database</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
-<div id="canvas">
-	<div id="header">
-	SMAN 5 Jember
+	<div class="judul">		
+		<h1>Jadwal Pelajaran</h1>
+		<h2>SMA Negeri 5 Jember</h2>
 	</div>
+	<br/>
+ 
+	<?php 
+	if(isset($_GET['pesan'])){
+		$pesan = $_GET['pesan'];
+		if($pesan == "input"){
+			echo "Data berhasil di input.";
+		}else if($pesan == "update"){
+			echo "Data berhasil di update.";
+		}else if($pesan == "hapus"){
+			echo "Data berhasil di hapus.";
+		}
+	}
+	?>
+	<br/>
+	<a class="tombol" href="input.php">+ Tambah Data Baru</a>
+ 
+	<h3>Data user</h3>
+	<table border="1" class="table">
+		<tr>
+			<th>No</th>
+			<th>Nama</th>
+			<th>Kelas</th>
+			<th>Semester</th>
+			<th>Tahun Ajaran</th>
+			<th>Unggah Jadwal</th>		
+		</tr>
+		<?php 
+		include "koneksi.php";
+		$query_mysql = mysqli_query($host, "SELECT * FROM user")or die(mysqli_error($host));
+		$nomor = 1;
+		while($data = mysqli_fetch_array($query_mysql)){
+		?>
+		<tr>
+			<td><?php echo $nomor++; ?></td>
+			<td><?php echo $data['nama']; ?></td>
+			<td><?php echo $data['Kelas']; ?></td>
+			<td><?php echo $data['Semester']; ?></td>
+			<td><?php echo $data['TahunAjaran']; ?></td>
+			<td><?php echo $data['Unggahjadwal']; ?></td>
 
-	<div id="menu">
-		<ul>
-			<li class="utama"><a href="">Beranda</a></li>
-			<li class="utama"><a href="">absensi</a>
-				<ul>
-					<li><a href="">Lihat Data</a></li>
-					<li><a href="">Tambah Data</a></li>
-				</ul>
-			</li>
-			<li class="utama"><a href="">jadwal</a>
-				<ul>
-					<li><a href="">Lihat Data</a></li>
-					<li><a href="">Tambah Data</a></li>
-				</ul>
-			</li>
-			<li class="utama right" style="background-color: #f60;"><a href="logout.php">Logout</a></li>
-			<li class="utama right">
-				<?php
-				if(@$_SESSION['admin']){
-					$user_terlogin = @$_SESSION['admin'];
-				} else if (@$_SESSION['operator']) {
-					$user_terlogin = @$_SESSION['operator'];
-				}
-				$sql_user = mysqli_query($conn,"select * from tb_login where kode_user = '$user_terlogin'") or die (mysql_error());
-				$data_user = mysqli_fetch_array($sql_user);
-				?>
-				<a>Selamat datang, <?php echo $data_user['nama_lengkap']; ?></a>
-			</li>
-		</ul>
-	</div>
-
-	<div id="isi">
-	
-	
-
-	</div>
-
-	<div id="footer">
-		copyright 2100 @13.frengki
-	</div>
-
+			<td>
+				<a class="edit" href="edit.php?id=<?php echo $data['id']; ?>">Edit</a> |
+				<a class="hapus" href="hapus.php?id=<?php echo $data['id']; ?>">Hapus</a>					
+			</td>
+		</tr>
+		<?php } ?>
+	</table>
 </body>
 </html>
-
-<?php
-} else {
-	header("location: login.php");
-}
-?>
