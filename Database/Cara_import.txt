@@ -1,4 +1,0 @@
-Download file databasenya...
-lalu buat database baru dengan nama sma5
-lalu import
-selesai
