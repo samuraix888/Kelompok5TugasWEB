@@ -11,13 +11,18 @@
 </head>
 <body>
 
-<div class="container">
-<div Id="header">
-        <h1>SMA Negeri 5 Jember</h1>
-    </div>
-    <!--end of header-->
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+<div style="background: #c43f5a;">
+<div class="banner">
+  <div class="text-center">
+  <h1>SMA Negeri 5 Jember</h1>
+<h7>Sistem Monitoring Pelajar Online </h7>
+  </div>
+
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light border border-dark mt-2">
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -44,19 +49,36 @@
           <a class="dropdown-item" href="#">Perizinan</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Username :</a>
-      </li>
+      
     </ul>
-        <a class="nav" href="#" style="color: black;">Keluar</a>
+
+    <ul class="navbar-nav float-right">
+    <li class="nav-item">
+    <a class="nav-link" href="#" style="color: black;">Username</a>
+    </li>
+
+    <li class="nav-item">
+    <a class="nav-link" href="#" style="color: black;">Keluar</a>
+    </li>
+    </ul>
+    
+        
+        
+  </div>
   </div>
 </nav>
+</div>
+
+
+
 <!--end of navbar-->
-<div class="container">
+<div class="container pt-5">
 
   <div class="row">
-    <div class="col ">
-            <h1 style="float: Center;">Biodata</h1>
+    <div class="col">
+    <center>
+        <font size = "+1" color = "#996600">BIODATA </font>
+        </center>
     <div class="card w-100" style="width: 18rem;">
   
   <div class="card-body">
@@ -78,16 +100,38 @@
 <!--col 1-->
 
     <div class="col">
-        <h1 style="">Pengumuman</h1>
-    <div class="card w-100" style="width: 18rem;">
-            <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
+        <center>
+        <font size = "+1" color = "#996600">PENGUMUMAN TERBARU </font>
+        </center>
+    <div id="pscroller1" class="someclass" style="position:relative; overflow:hidden">
+    <div class="innerDiv" style="position:absolute; width:500px; top:5px" id="pscroller">
+    </div>
+    <center>
+        <font color="#006699" font-family:courier new, courier,mono;>
+        <h3>PENGUMUMAN TERBARU </h3>
+        </font>
+        
+    </center>
+    </div>
+    <div class="innerDev" style="position:absolute;width:500px; visible;top:410:" id="pscroller12">
+    <center>
+    <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">Panel Body</div>
+      <div class="panel-footer">Panel Footer</div>
+    </div>
+  </div>
 </div>
+    </center>
+    </div>
+    </div>
+    
 </div>
 <!--col 2-->
 </div>
@@ -96,8 +140,10 @@
 </div>
 <!--end of body-->
 
-<div class="footer">
+<div class="footer"style="background-color :aqua;">
+<center>
   <p>Copyright &copy;POLIJE 2019 - MotorPro</p>
+</center>
 </div>
 <!--end of navbar-->
 

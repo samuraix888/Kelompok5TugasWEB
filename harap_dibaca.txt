@@ -1,0 +1,14 @@
+index_user = index utama
+index_admin = hanya untuk admin
+
+harus diselesaikan :
+index_user {
+	tampilan = warna belum diatur, toolbox pengumuman masih amburadul;
+	fitur = biodata belum dilengkapin;
+	link= belum di link ke masing masing fitur;
+}
+
+index_admin {
+	tempilan= udah ambil template; tinggal atur warna sesuai client;
+	kekurangan= belum di link;
+}
