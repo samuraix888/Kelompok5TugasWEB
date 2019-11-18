@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2019 at 04:05 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Nov 18, 2019 at 05:15 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `motor_pro`
+-- Database: `sma5`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbd_siswa` (
-  `nis` int(5) NOT NULL,
+  `nis` varchar(5) NOT NULL,
   `kode_kelas` varchar(5) NOT NULL,
   `tahun_ajaran` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,10 +41,37 @@ CREATE TABLE `tbd_siswa` (
 --
 
 CREATE TABLE `tb_absen` (
-  `nis` int(5) NOT NULL,
+  `nis` varchar(5) NOT NULL,
   `kode_kelas` varchar(5) NOT NULL,
   `kode_status` varchar(1) NOT NULL,
   `kode_jam` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_izin`
+--
+
+CREATE TABLE `tb_izin` (
+  `nis` varchar(5) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jenis_izin` enum('Sakit','Izin','','') NOT NULL,
+  `keterangan` text NOT NULL,
+  `foto1` varchar(35) NOT NULL,
+  `foto2` varchar(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jadwal`
+--
+
+CREATE TABLE `tb_jadwal` (
+  `kode_jadwal` varchar(5) NOT NULL,
+  `kode_kelas` varchar(5) NOT NULL,
+  `tahun_ajaran` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -72,12 +99,30 @@ CREATE TABLE `tb_kelas` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_pengumuman`
+--
+
+CREATE TABLE `tb_pengumuman` (
+  `kode_pengumuman` int(3) NOT NULL,
+  `pengumuman` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_pengumuman`
+--
+
+INSERT INTO `tb_pengumuman` (`kode_pengumuman`, `pengumuman`) VALUES
+(16, 'lol');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_siswa`
 --
 
 CREATE TABLE `tb_siswa` (
-  `nis` int(5) NOT NULL,
-  `nisn` int(10) NOT NULL,
+  `nis` varchar(5) NOT NULL,
+  `nisn` varchar(10) NOT NULL,
   `nama_siswa` varchar(40) NOT NULL,
   `tempat` varchar(15) NOT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -129,6 +174,12 @@ ALTER TABLE `tb_kelas`
   ADD PRIMARY KEY (`kode_kelas`);
 
 --
+-- Indexes for table `tb_pengumuman`
+--
+ALTER TABLE `tb_pengumuman`
+  ADD PRIMARY KEY (`kode_pengumuman`);
+
+--
 -- Indexes for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
@@ -141,29 +192,14 @@ ALTER TABLE `tb_status`
   ADD PRIMARY KEY (`kode_status`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Constraints for table `tbd_siswa`
+-- AUTO_INCREMENT for table `tb_pengumuman`
 --
-ALTER TABLE `tbd_siswa`
-  ADD CONSTRAINT `tbd_siswa_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`);
-
---
--- Constraints for table `tb_absen`
---
-ALTER TABLE `tb_absen`
-  ADD CONSTRAINT `tb_absen_ibfk_1` FOREIGN KEY (`kode_status`) REFERENCES `tb_status` (`kode_status`),
-  ADD CONSTRAINT `tb_absen_ibfk_2` FOREIGN KEY (`kode_jam`) REFERENCES `tb_jam` (`kode_jam`),
-  ADD CONSTRAINT `tb_absen_ibfk_3` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`),
-  ADD CONSTRAINT `tb_absen_ibfk_4` FOREIGN KEY (`kode_kelas`) REFERENCES `tb_kelas` (`kode_kelas`);
-
---
--- Constraints for table `tb_kelas`
---
-ALTER TABLE `tb_kelas`
-  ADD CONSTRAINT `tb_kelas_ibfk_1` FOREIGN KEY (`kode_kelas`) REFERENCES `tbd_siswa` (`kode_kelas`);
+ALTER TABLE `tb_pengumuman`
+  MODIFY `kode_pengumuman` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
