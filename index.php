@@ -81,6 +81,8 @@
 					include "inc/tambah_siswa.php";
 				} else if($action == "edit"){
 					include "inc/edit_siswa.php";
+				} else if($action == "hapus"){
+					include "inc/hapus_siswa.php";
 				}
 			} else if($page == "jadwal") {
 				echo "ini adalah halaman jadwal";

@@ -28,7 +28,7 @@
 			<td align="center"><img src="foto/<?php echo $data['foto']; ?>" width="120px"></td>
 			<td align="center"> 
 				<a href="?page=siswa&action=edit&nis=<?php echo $data['nis']; ?>"><button>Edit</button></a>
-				<a href="?page=siswa&action=edit&nis=<?php echo $data['nis']; ?>"><button>Hapus</button></a>
+				<a onclick="return confirm('Apakah anda yakin menghapus data ini')" href="?page=siswa&action=hapus&nis=<?php echo $data['nis']; ?>"><button>Hapus</button></a>
 			</td>
 		</tr>
 		<?php } ?>
