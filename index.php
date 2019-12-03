@@ -17,7 +17,7 @@
 <div class="banner">
   <div class="text-center">
   <h1>SMA Negeri 5 Jember</h1>
-<h7>Sistem Monitoring Pelajar Online </h7>
+<h7>Sistem Monitoring Pelajar Online </h7> 
   </div>
 
 </div>
@@ -104,14 +104,13 @@
 <!--col 1-->
 
     <div class="col">
+    <center>
+        <font size = "+1" color = "black">PENGUMUMAN</font>
+        </center>
        
     <div id="pscroller1" class="someclass" style="position:relative; overflow:hidden">
     <div class="innerDiv" style="position:absolute; width:500px; top:5px" id="pscroller">
     </div>
-    <center>
-        <font color="#006699" font-family:courier new, courier,mono;>
-        <h3>PENGUMUMAN TERBARU </h3>
-        </font>
         
    
     </div>
@@ -130,9 +129,6 @@
     </div>
   </div>
 </div>
-
-
-    </center>
     </div>
     </div>
     
