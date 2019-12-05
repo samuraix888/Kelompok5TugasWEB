@@ -1,6 +1,7 @@
 <?php 
 include 'koneksi_jadwal.php';
-
+// echo "<pre>";
+// print_r($_POST);
 $kode_jadwal = $_POST['kode_jadwal'];
 $kode_kelas = $_POST['kode_kelas'];
 $Semester = $_POST['semester'];

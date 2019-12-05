@@ -481,12 +481,12 @@ John Abraham</h5>
                       <option value="JD123">XIIA3</option>
                       <option value="XIIA4">XIIA4</option>
                       <option value="XIIA5">XIIA5</option>
-                      <option value="Xi1">Xi1</option>
-                      <option value="Xi2">Xi2</option>
-                      <option value="XIi1">XIi1</option>
-                      <option value="XIi2">XIi2</option>
-                      <option value="XIIi1">XIIi1</option>
-                      <option value="XIIi2">XIIi2</option>
+                      <option value="JD106">JD106</option>
+                      <option value="JD107">JD107</option>
+                      <option value="JD116">JD116</option>
+                      <option value="JD117">JD117</option>
+                      <option value="JD126">JD126</option>
+                      <option value="JD127">JD127</option>
                     </select>
                   </td>
                 </tr>
@@ -532,7 +532,8 @@ John Abraham</h5>
           </tr>
           <?php
           include "koneksi_jadwal.php";
-          $query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_kelas = tb_jadwal.kode_kelas") or die(mysqli_error($host));
+          $query_mysql = mysqli_query($host, "SELECT tb_jadwal.* FROM tb_jadwal") or die(mysqli_error($host));
+        //   $query_mysql = mysqli_query($host, "SELECT tb_jadwal.* FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_kelas = tb_jadwal.kode_kelas") or die(mysqli_error($host));
           $nomor = 1;
           echo mysqli_error($host);
           while ($data = mysqli_fetch_array($query_mysql)) {
@@ -544,11 +545,11 @@ John Abraham</h5>
               <td><?php echo $data['kode_jadwal']; ?></td>
               <td><?php echo $data['semester']; ?></td>
               <td><?php echo $data['tahun_ajaran']; ?></td>
-              <td><a href="<?php echo "file/".$data['Unggahjadwal']; ?>">lihat jadwal</a></td>
+              <td><a href="<?php echo "file/".$data['unggah_jadwal']; ?>">lihat jadwal</a></td>
 
               <td>
-                <a class="edit" href="edit_jadwal.php?id=<?php echo $data['id']; ?>">Edit</a> |
-                <a class="hapus" href="hapus_jadwal.php?id=<?php echo $data['id']; ?>">Hapus</a>
+                <a class="edit" href="edit_jadwal.php?id=<?php echo $data['kode_jadwal']; ?>">Edit</a> |
+                <a class="hapus" href="hapus_jadwal.php?id=<?php echo $data['kode_jadwal']; ?>">Hapus</a>
               </td>
             </tr>
 
