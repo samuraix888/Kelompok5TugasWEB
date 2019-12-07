@@ -1,0 +1,73 @@
+#wrapper{
+	width:1024px;
+	height: auto;
+	padding-top:50px;
+	display: block;
+	margin: auto;
+}
+.box{
+	padding-top:30px;
+}
+.pagination{
+	position: relative;
+	left:35%;
+}
+.table th, .table td, .table td > p{
+	vertical-align: middle;
+}
+.table td > p{
+	margin-bottom:0px;
+}
+.content{
+	font-size: 32px;
+ font-size: 2rem;
+     line-height: 1;
+                                    color: aqua;
+ font-family: 'Times New Roman', Times, serif;
+	background-color:red; height: 80px;
+   text-align: center;
+}
+
+#header{
+	background-color:red; height: 80px;
+
+}
+
+
+}   
+                        
+.form-gruop{
+	width: 70%;
+
+
+}
+
+
+footer{
+
+	
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background-color: #333;
+	padding-top: 45px;
+}
+
+footer p{
+	color: #aaa;
+	font-size: 1em;
+
+}
+
+
+
+footer p i{
+	color: salmon;
+}
+
+footer{
+	font-family: 'Libre Franklin', sans-serif;
+	background-color: grey;
+	color: white;
+				}
+
