@@ -436,7 +436,7 @@ John Abraham</h5>
           <table>
             <h3>Input data jadwal pelajaran<h3>
                 <tr>
-                  <td>Kelas</td>
+                  <td>Kode Kelas</td>
                   <td> <select class="form-control" name="kode_kelas">
                       <option value="XA1">XA1</option>
                       <option value="XA2">XA2</option>
@@ -490,14 +490,7 @@ John Abraham</h5>
                     </select>
                   </td>
                 </tr>
-                <tr>
-                  <td>Semester</td>
-                  <td> <select class="form-control" name="semester">
-                      <option value="genap">genap</option>
-                      <option value="ganjil">ganjil</option>
-                    </select>
-                  </td>
-                </tr>
+               
                 <tr>
                   <td>Unggah Jadwal</td>
                   <td>
@@ -505,14 +498,7 @@ John Abraham</h5>
                     <input type="file" name="file">
                     <!-- <input type="submit" name="upload" value="Upload"></td> -->
                 </tr>
-                <tr>
-                  <td>TahunAjaran</td>
-                  <td> <select class="form-control" name="tahun_ajaran">
-                      <option value="2019/2020">2019/2020</option>
-                      <option value="2020/2021">2020/2021</option>
-                    </select>
-                  </td>
-                </tr>
+               
                 <tr>
                   <td></td>
                   <td><input type="submit" value="Simpan"></td>
@@ -525,26 +511,26 @@ John Abraham</h5>
             <th>No</th>
 
             <th>Kode Kelas</th>
+            
             <th>Kode Jadwal</th>
-            <th>Semester</th>
-            <th>Tahun Ajaran</th>
             <th>Unggah Jadwal</th>
+            <th>Setting</th>
           </tr>
           <?php
           include "koneksi_jadwal.php";
-          $query_mysql = mysqli_query($host, "SELECT tb_jadwal.* FROM tb_jadwal") or die(mysqli_error($host));
+          $query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_jadwal = tb_jadwal.kode_jadwal");
         //   $query_mysql = mysqli_query($host, "SELECT tb_jadwal.* FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_kelas = tb_jadwal.kode_kelas") or die(mysqli_error($host));
           $nomor = 1;
-          echo mysqli_error($host);
+          
+          //echo $query_mysql == true ? "Ya" : "Tidak";
           while ($data = mysqli_fetch_array($query_mysql)) {
+              
             ?>
             <tr>
-              <td><?php echo $nomor++; ?></td>
-              
+              <td><?php echo $nomor; ?></td>
               <td><?php echo $data['kode_kelas']; ?></td>
               <td><?php echo $data['kode_jadwal']; ?></td>
-              <td><?php echo $data['semester']; ?></td>
-              <td><?php echo $data['tahun_ajaran']; ?></td>
+
               <td><a href="<?php echo "file/".$data['unggah_jadwal']; ?>">lihat jadwal</a></td>
 
               <td>
@@ -554,7 +540,7 @@ John Abraham</h5>
             </tr>
 
             </form>
-          <?php } ?>
+          <?php $nomor++; } ?>
         </table>
       </div>
                 </div>
@@ -583,6 +569,8 @@ John Abraham</h5>
             <!-- ============================================================== -->
         </div>
     </div>
+
+
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->

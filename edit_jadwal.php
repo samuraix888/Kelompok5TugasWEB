@@ -449,49 +449,7 @@ while ($data = mysqli_fetch_array($query_mysql)) {
   <form action="update_jadwal.php" method="post">
     <table>
 
-      <tr>
-        <td>Kelas</td>
-        <td> <select class="form-control" name="kode_kelas">
-            <option value="10 ipa 1">10 ipa 1</option>
-            <option value="10 ipa 2">10 ipa 2</option>
-            <option value="10 bahasa 1">10 bahasa 1</option>
-            <option value="10 bahasa 2">10 bahasa 2</option>
-            <option value="10 bahasa 3">10 bahasa 3</option>
-            <option value="10 ips 1">10 ips 1</option>
-            <option value="11 ipa 1">11 ipa 1</option>
-            <option value="11 ipa 2">11 ipa 2</option>
-            <option value="11 ips 1">11 ips 1</option>
-            <option value="11 ips 2">11 ips 2</option>
-            <option value="12 ipa 1">12 ipa 1</option>
-            <option value="12 ipa 2">12 ipa 2</option>
-            <option value="12 ipa 3">12 ipa 3</option>
-            <option value="12 ipa 4">12 ipa 4</option>
-            <option value="12 ips 1">12 ips 1</option>
-            <option value="12 ips 2">12 ips 2</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Semester</td>
-        <td> <select class="form-control" name="semester">
-            <option value="genap">genap</option>
-            <option value="ganjil">ganjil</option>
-          </select>
-        </td>
-
-      </tr>
-      <tr>
-
-        <td>Tahun Ajaran</td>
-        <td> <select class="form-control" name="tahun_ajaran">
-            <option value="2019/2020">2019/2020</option>
-            <option value="2020/2021">2020/2021</option>
-          </select>
-        </td>
-
-
-
-      </tr>
+     
       <tr>
         <td>Unggah Jadwal</td>
         <td>

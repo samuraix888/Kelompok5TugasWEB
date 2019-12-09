@@ -13,7 +13,7 @@
 
 
 
-<div style="background:  #00dac6;">
+<div style="background:  hsla(149, 39%, 49%,1);">
 <div class="banner">
   <div class="text-center">
   <h1>SMA Negeri 5 Jember</h1>
@@ -22,7 +22,7 @@
 
 </div>
 
-<div style="background:  #009688;">
+<div style="background:  hsla(148, 78%, 71%,1);">
 <nav class="navbar navbar-expand-lg navbar-light border border-dark mt-2">
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
