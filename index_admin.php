@@ -119,7 +119,7 @@ SULISTIANTO</h5>
                                             <a class="nav-link" href="#">Lihat Data</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Tambah Data</a>
+                                            <a class="nav-link" href="index_jadwal_admin.php">Tambah Data</a>
                                         </li>
                                     </ul>
                                 </div>
