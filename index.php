@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SMA 5 Jember</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="../../style_user.css">
     <!--end off css-->
 </head>
 <body>
@@ -20,7 +21,7 @@
 <h7>Sistem Monitoring Pelajar Online </h7> 
   </div>
 
-</div>
+</div>  
 
 <div style="background:  #009688;">
 <nav class="navbar navbar-expand-lg navbar-light border border-dark mt-2">
@@ -87,7 +88,7 @@
   
   <div class="card-body">
     <div class="text-center">
-    <img src="https://ih0.redbubble.net/image.414443364.5939/poster,840x830,f8f8f8-pad,750x1000,f8f8f8.u3.jpg" style="max-width: 50%;" class="avatar img-circle img-thumbnail" alt="avatar">
+    <img src="https://i0.wp.com/www.radarbengkuluonline.com/wp-content/uploads/2019/07/Kepala-SMA-M-1sekolah-pirwan-dahiwi.jpg?fit=600%2C718&ssl=1" style="max-width: 50%;" class="avatar img-circle img-thumbnail" alt="avatar">
     </div>
     <div class="card-text">
     <li>NIS : </li>
@@ -105,30 +106,27 @@
 
     <div class="col">
     <center>
-        <font size = "+1" color = "black">PENGUMUMAN</font>
+      <h4 class="panel-title">
+        <a  data-toggle="collapse" href="#collapse1" style="color:#000">Pengumuman <i class="fas fa-chevron-down"></i></a>
+      </h4>
         </center>
        
-    <div id="pscroller1" class="someclass" style="position:relative; overflow:hidden">
-    <div class="innerDiv" style="position:absolute; width:500px; top:5px" id="pscroller">
-    </div>
+        <div id="collapse1" class="panel-collapse collapse">
+        <?php 
+		include "component/pengumuman/koneksi_pengumuman.php";
+		$query_mysql = mysqli_query($host, "SELECT * FROM tb_pengumuman")or die(mysqli_error($host));
+		$nomor = 1;
+		while($data = mysqli_fetch_array($query_mysql)){
+    ?>
+    
+    <td><?php echo $nomor++; ?>.</td>
+			<td><?php echo $data['pengumuman']; ?></td> <br>
+      <?php } ?>
+   
+        </div>
         
    
-    </div>
-    <div class="innerDev" style="position:absolute;width:500px; visible;top:410:" id="pscroller12">
-   
-    <div class="panel-group">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1" style="color:#000">Pengumuman </a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse">
-      <div class="panel-body">Informasi Kegiatan Lomba 17 Agustus </div>
-      <div class="panel-footer">Informasi Kegiatan Penerimaan Anggota Osis</div>
-    </div>
-  </div>
-</div>
+    
     </div>
     </div>
     
