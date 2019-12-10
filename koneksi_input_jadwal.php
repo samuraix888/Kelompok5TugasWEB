@@ -27,4 +27,5 @@ echo mysqli_error($host);
 
 // echo "INSERT INTO user VALUES('','$kodekelas','$Kelas','$Semester','$TahunAjaran')";
 header("location:index_jadwal_admin.php?pesan=input")
+
 ?>

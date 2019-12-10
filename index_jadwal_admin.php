@@ -147,57 +147,43 @@ SULISTIANTO</h5>
             <h3>Input data jadwal pelajaran<h3>
                 <tr>
                   <td>Kode Kelas</td>
-                  <td> <select class="form-control" name="kode_kelas">
-                      <option value="XA1">XA1</option>
-                      <option value="XA2">XA2</option>
-                      <option value="XA3">XA3</option>
-                      <option value="XA4">XA4</option>
-                      <option value="XA5">XA5</option>
-                      <option value="XIA1">XIA1</option>
-                      <option value="XIA2">XIA2</option>
-                      <option value="XIA3">XIA3</option>
-                      <option value="XIA4">XIA4</option>
-                      <option value="XIA5">XIA5</option>
-                      <option value="XIIA1">XIIA1</option>
-                      <option value="XIIA2">XIIA2</option>
-                      <option value="XIIA3">XIIA3</option>
-                      <option value="XIIA4">XIIA4</option>
-                      <option value="XIIA5">XIIA5</option>
-                      <option value="Xi1">Xi1</option>
-                      <option value="Xi2">Xi2</option>
-                      <option value="XIi1">XIi1</option>
-                      <option value="XIi2">XIi2</option>
-                      <option value="XIIi1">XIIi1</option>
-                      <option value="XIIi2">XIIi2</option>
-                 
-
+                  <td> <input type="text" class="form-control" name="kode_kelas">
                   </td>
                 </tr>
                 <tr>
+                  <td> Kelas</td>
+                  <td> <input type="text" class="form-control" name="kode_kelas">
+                  </td>
+                </tr>
+               
+                    
                   <td>Kode Jadwal</td>
-                  <td> <select class="form-control" name="kode_jadwal">
-                      <option value="JD101">JD101</option>
-                      <option value="JD102">JD102</option>
-                      <option value="JD103">JD103</option>
-                      <option value="JD104">JD104</option>
-                      <option value="JD105">JD105</option>
-                      <option value="JD111">JD111</option>
-                      <option value="JD112">JD112</option>
-                      <option value="JD113">JD113</option>
-                      <option value="JD114">JD114</option>
-                      <option value="JD115">JD115</option>
-                      <option value="JD121">JD121</option>
-                      <option value="JD122">JD122</option>
-                      <option value="JD123">XIIA3</option>
-                      <option value="XIIA4">XIIA4</option>
-                      <option value="XIIA5">XIIA5</option>
-                      <option value="JD106">JD106</option>
-                      <option value="JD107">JD107</option>
-                      <option value="JD116">JD116</option>
-                      <option value="JD117">JD117</option>
-                      <option value="JD126">JD126</option>
-                      <option value="JD127">JD127</option>
-                    </select>
+                  <td> 
+                  <?php
+                  include "koneksi_jadwal.php";
+                  // mencari kode barang dengan nilai paling besar
+                  $query = "SELECT max(kode_jadwal) as maxKode FROM tb_jadwal";
+                  $hasil = mysqli_query($host,$query);
+                  $data = mysqli_fetch_array($hasil);
+                  $kode_jadwal = $data['maxKode'];
+                  // mengambil angka atau bilangan dalam kode anggota terbesar,
+                 // dengan cara mengambil substring mulai dari karakter ke-1 diambil 6 karakter
+// misal 'BRG001', akan diambil '001'
+// setelah substring bilangan diambil lantas dicasting menjadi integer
+                    $noUrut = (int) substr($kode_jadwal, 3, 3);
+
+// bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
+                    $noUrut++;
+
+// membentuk kode anggota baru
+// perintah sprintf("%03s", $noUrut); digunakan untuk memformat string sebanyak 3 karakter
+// misal sprintf("%03s", 12); maka akan dihasilkan '012'
+// atau misal sprintf("%03s", 1); maka akan dihasilkan string '001'
+                    $char = "JD";
+                    $kode_jadwal = $char . sprintf("%03s", $noUrut);
+            
+                  ?>
+                  <input type="text" class="class" name="kode_jadwal" value="<?= $kode_jadwal ?>" readonly>
                   </td>
                 </tr>
                
@@ -219,10 +205,10 @@ SULISTIANTO</h5>
         <table border="1" class="table">
           <tr>
             <th>No</th>
-
-            <th>Kode Kelas</th>
-            
             <th>Kode Jadwal</th>
+            <th>Kode Kelas</th>
+            <th>kelas</th>
+            
             <th>Unggah Jadwal</th>
             <th>Setting</th>
           </tr>
@@ -233,13 +219,15 @@ SULISTIANTO</h5>
           $nomor = 1;
           
           //echo $query_mysql == true ? "Ya" : "Tidak";
-          while ($data = mysqli_fetch_array($query_mysql)) {
+          while ($datas = mysqli_fetch_array($query_mysql)) {
               
             ?>
             <tr>
               <td><?php echo $nomor; ?></td>
-              <td><?php echo $data['kode_kelas']; ?></td>
-              <td><?php echo $data['kode_jadwal']; ?></td>
+              <td><?php echo $datas['kode_jadwal']; ?></td>
+              <td><?php echo $datas['kode_kelas']; ?></td>
+              <td><?php echo $datas['kelas']; ?></td>
+             
 
               <td><a href="<?php echo "file/".$data['unggah_jadwal']; ?>">lihat jadwal</a></td>
 
