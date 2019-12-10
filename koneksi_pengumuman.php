@@ -1,3 +1,3 @@
 <?php
-$host=mysqli_connect("localhost","root","","sma5");
+$host=mysqli_connect("localhost","root","","sementara");
 ?>
