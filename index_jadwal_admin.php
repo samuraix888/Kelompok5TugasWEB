@@ -146,45 +146,11 @@ SULISTIANTO</h5>
           <table>
             <h3>Input data jadwal pelajaran<h3>
                 <tr>
-                  <td>Kode Kelas</td>
-                  <td> <input type="text" class="form-control" name="kode_kelas">
-                  </td>
-                </tr>
-                <tr>
-                  <td> Kelas</td>
-                  <td> <input type="text" class="form-control" name="kode_kelas">
-                  </td>
-                </tr>
-               
-                    
                   <td>Kode Jadwal</td>
-                  <td> 
-                  <?php
-                  include "koneksi_jadwal.php";
-                  // mencari kode barang dengan nilai paling besar
-                  $query = "SELECT max(kode_jadwal) as maxKode FROM tb_jadwal";
-                  $hasil = mysqli_query($host,$query);
-                  $data = mysqli_fetch_array($hasil);
-                  $kode_jadwal = $data['maxKode'];
-                  // mengambil angka atau bilangan dalam kode anggota terbesar,
-                 // dengan cara mengambil substring mulai dari karakter ke-1 diambil 6 karakter
-// misal 'BRG001', akan diambil '001'
-// setelah substring bilangan diambil lantas dicasting menjadi integer
-                    $noUrut = (int) substr($kode_jadwal, 3, 3);
-
-// bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
-                    $noUrut++;
-
-// membentuk kode anggota baru
-// perintah sprintf("%03s", $noUrut); digunakan untuk memformat string sebanyak 3 karakter
-// misal sprintf("%03s", 12); maka akan dihasilkan '012'
-// atau misal sprintf("%03s", 1); maka akan dihasilkan string '001'
-                    $char = "JD";
-                    $kode_jadwal = $char . sprintf("%03s", $noUrut);
-            
-                  ?>
-                  <input type="text" class="class" name="kode_jadwal" value="<?= $kode_jadwal ?>" readonly>
-                  </td>
+                  <td> <input type="text" class="form-control" name="kode_jadwal">
+                </tr>
+                <td>Kode kelas</td>
+                  <td> <input type="text" class="form-control" name="kode_kelas">
                 </tr>
                
                 <tr>
@@ -205,16 +171,16 @@ SULISTIANTO</h5>
         <table border="1" class="table">
           <tr>
             <th>No</th>
+
             <th>Kode Jadwal</th>
-            <th>Kode Kelas</th>
-            <th>kelas</th>
+           <th>Kode kelas</th>
             
             <th>Unggah Jadwal</th>
             <th>Setting</th>
           </tr>
           <?php
           include "koneksi_jadwal.php";
-          $query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_jadwal = tb_jadwal.kode_jadwal");
+          $query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal ");
         //   $query_mysql = mysqli_query($host, "SELECT tb_jadwal.* FROM tb_jadwal INNER JOIN tb_kelas ON tb_kelas.kode_kelas = tb_jadwal.kode_kelas") or die(mysqli_error($host));
           $nomor = 1;
           
@@ -226,14 +192,14 @@ SULISTIANTO</h5>
               <td><?php echo $nomor; ?></td>
               <td><?php echo $datas['kode_jadwal']; ?></td>
               <td><?php echo $datas['kode_kelas']; ?></td>
-              <td><?php echo $datas['kelas']; ?></td>
+              
              
 
-              <td><a href="<?php echo "file/".$data['unggah_jadwal']; ?>">lihat jadwal</a></td>
+              <td><a href="<?php echo "file/".$datas['unggah_jadwal']; ?>">lihat jadwal</a></td>
 
               <td>
-                <a class="edit" href="edit_jadwal.php?id=<?php echo $data['kode_jadwal']; ?>">Edit</a> |
-                <a class="hapus" href="hapus_jadwal.php?id=<?php echo $data['kode_jadwal']; ?>">Hapus</a>
+                <a class="edit" href="edit_jadwal.php?id=<?php echo $datas['kode_jadwal']; ?>">Edit</a> 
+                <a class="hapus" href="hapus_jadwal.php?id=<?php echo $datas['kode_jadwal']; ?>">Hapus</a>
               </td>
             </tr>
 

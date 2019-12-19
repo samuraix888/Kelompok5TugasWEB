@@ -9,7 +9,7 @@ $ekstensi_diperbolehkan	= array('png','jpg');
 			$x = explode('.', $nama);
 			$ekstensi = strtolower(end($x));
 			$ukuran	= $_FILES['file']['size'];
-			$file_tmp = $_FILES['file']['tmp_name'];	
+			$file_tmp = $_FILES['file']['tmp_name'];
  
 			if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
 				if($ukuran < 1044070){			
@@ -17,11 +17,11 @@ $ekstensi_diperbolehkan	= array('png','jpg');
                 }
 			}
 			
-			echo $kode_kelas;
-			echo $kode_jadwal;
-
-mysqli_query($host, "INSERT INTO tb_kelas VALUES('$kode_kelas', '', '$kode_jadwal')");
-mysqli_query($host, "INSERT INTO tb_jadwal VALUES('$kode_jadwal', '$nama')");
+			
+			
+			
+//mysqli_query($host, "INSERT INTO tb_kelas VALUES('', '', '$kode_jadwal')");
+mysqli_query($host, "INSERT INTO tb_jadwal VALUES('$kode_jadwal','$kode_kelas', '$nama')");
 
 echo mysqli_error($host);
 
