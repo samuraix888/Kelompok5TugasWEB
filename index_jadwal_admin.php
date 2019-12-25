@@ -150,8 +150,23 @@ SULISTIANTO</h5>
                   <td> <input type="text" class="form-control" name="kode_jadwal">
                 </tr>
                 <td>Kode kelas</td>
-                  <td> <input type="text" class="form-control" name="kode_kelas">
-                </tr>
+                  <td> 
+                      <select class="form-control"
+                      name="kode_kelas" id="kode_kelas" required>
+                      <option value="">pilih kode kelas</option>
+                      <?php 
+                      include('koneksi_jadwal.php');
+                        $ww = mysqli_query($host, "SELECT * from tb_kelas");
+                        while ($dp = mysqli_fetch_array($ww)) {
+                      ?>
+                        <option value="<?= $dp['kode_kelas']?>">
+                         <?= $dp['kode_kelas']?>  
+                    </option>
+                        <?php 
+                        }
+                        ?>
+                      </select>
+               </tr>
                
                 <tr>
                   <td>Unggah Jadwal</td>
@@ -195,7 +210,7 @@ SULISTIANTO</h5>
               
              
 
-              <td><a href="<?php echo "file/".$datas['unggah_jadwal']; ?>">lihat jadwal</a></td>
+              <td><a href="<?php echo "file/".$datas ['unggah_jadwal']; ?>">lihat jadwal</a></td>
 
               <td>
                 <a class="edit" href="edit_jadwal.php?id=<?php echo $datas['kode_jadwal']; ?>">Edit</a> 

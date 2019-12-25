@@ -143,12 +143,12 @@ SULISTIANTO</h5>
                 <div class="row">
                 <div class="container">
                 <div class="eco">
-
+<center>
 <a href="index_jadwal_admin.php">Lihat Semua Data</a>
 
 <br />
 <h3>Edit data</h3>
-
+</center>
 <?php
 include "koneksi_jadwal.php";
 $id = $_GET['id'];
@@ -157,49 +157,51 @@ $nomor = 1;
 while ($data = mysqli_fetch_array($query_mysql)) {
   ?>
  
+ <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                <div class="container">
+        <form action="koneksi_input_jadwal.php" method="post" enctype="multipart/form-data">
           <table>
             <h3>Input data jadwal pelajaran<h3>
-                <tr>
-                  <td>Kode Kelas</td>
-                  <td> <input type="text" class="form-control" name="kode_kelas">
-                  </td>
-                </tr>
-                <tr>
-                  <td> Kelas</td>
-                  <td> <input type="text" class="form-control" name="kode_kelas">
-                  </td>
-                </tr>
-               
-                    
-                  <td>Kode Jadwal</td>
+              <tr>
+                <td>Kode jadwal</td>
                   <td> 
-                  <?php
-                  include "koneksi_jadwal.php";
-                  // mencari kode barang dengan nilai paling besar
-                  $query = "SELECT max(kode_jadwal) as maxKode FROM tb_jadwal";
-                  $hasil = mysqli_query($host,$query);
-                  $data = mysqli_fetch_array($hasil);
-                  $kode_jadwal = $data['maxKode'];
-                  // mengambil angka atau bilangan dalam kode anggota terbesar,
-                 // dengan cara mengambil substring mulai dari karakter ke-1 diambil 6 karakter
-// misal 'BRG001', akan diambil '001'
-// setelah substring bilangan diambil lantas dicasting menjadi integer
-                    $noUrut = (int) substr($kode_jadwal, 3, 3);
-
-// bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
-                    $noUrut++;
-
-// membentuk kode anggota baru
-// perintah sprintf("%03s", $noUrut); digunakan untuk memformat string sebanyak 3 karakter
-// misal sprintf("%03s", 12); maka akan dihasilkan '012'
-// atau misal sprintf("%03s", 1); maka akan dihasilkan string '001'
-                    $char = "JD";
-                    $kode_jadwal = $char . sprintf("%03s", $noUrut);
-            
-                  ?>
-                  <input type="text" class="class" name="kode_jadwal" value="<?= $kode_jadwal ?>" readonly>
-                  </td>
-                </tr>
+                      <select class="form-control"
+                      name="kode_jadwal" id="kode_jadwal" required>
+                      <option value="">pilih kode jadwal</option>
+                      <?php 
+                      include('koneksi_jadwal.php');
+                        $ww = mysqli_query($host, "SELECT * from tb_jadwal");
+                        while ($dp = mysqli_fetch_array($ww)) {
+                      ?>
+                        <option value="<?= $dp['kode_jadwal']?>">
+                         <?= $dp['kode_jadwal']?>  
+                    </option>
+                        <?php 
+                        }
+                        ?>
+                      </select>
+                  </tr>
+                 
+                <td>Kode kelas</td>
+                  <td> 
+                      <select class="form-control"
+                      name="kode_kelas" id="kode_kelas" required>
+                      <option value="">pilih kode kelas</option>
+                      <?php 
+                      include('koneksi_jadwal.php');
+                        $ww = mysqli_query($host, "SELECT * from tb_kelas");
+                        while ($dp = mysqli_fetch_array($ww)) {
+                      ?>
+                        <option value="<?= $dp['kode_kelas']?>">
+                         <?= $dp['kode_kelas']?>  
+                    </option>
+                        <?php 
+                        }
+                        ?>
+                      </select>
+               </tr>
                
                 <tr>
                   <td>Unggah Jadwal</td>
