@@ -147,7 +147,7 @@ SULISTIANTO</h5>
             <h3>Input data jadwal pelajaran<h3>
                 <tr>
                   <td>Kode Jadwal</td>
-                  <td> <input type="text" class="form-control" name="kode_jadwal">
+                  
                 </tr>
                 <td>Kode kelas</td>
                   <td> 

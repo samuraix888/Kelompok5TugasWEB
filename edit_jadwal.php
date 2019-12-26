@@ -151,17 +151,15 @@ SULISTIANTO</h5>
 </center>
 <?php
 include "koneksi_jadwal.php";
-$id = $_GET['id'];
-$query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal WHERE kode_jadwal='$id'") or die(mysqli_error($host));
+$kode_jadwal = $_GET['id'];
+$query_mysql = mysqli_query($host, "SELECT * FROM tb_jadwal WHERE kode_jadwal='$kode_jadwal'") or die(mysqli_error($host));
+
 $nomor = 1;
-while ($data = mysqli_fetch_array($query_mysql)) {
+while ($datas = mysqli_fetch_array($query_mysql)) {
   ?>
  
- <div class="dashboard-wrapper">
-            <div class="container-fluid dashboard-content">
-                <div class="row">
-                <div class="container">
-        <form action="koneksi_input_jadwal.php" method="post" enctype="multipart/form-data">
+
+        <form action="update_jadwal.php" method="post" >
           <table>
             <h3>Input data jadwal pelajaran<h3>
               <tr>

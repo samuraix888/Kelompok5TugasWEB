@@ -2,7 +2,7 @@
 include 'koneksi_jadwal.php';
 // echo "<pre>";
 // print_r($_POST);
-$kode_jadwal = $_POST['kode_jadwal'];
+
 $kode_kelas = $_POST['kode_kelas'];
 $ekstensi_diperbolehkan	= array('png','jpg');
 			$nama = $_FILES['file']['name'];
@@ -21,7 +21,7 @@ $ekstensi_diperbolehkan	= array('png','jpg');
 			
 			
 //mysqli_query($host, "INSERT INTO tb_kelas VALUES('', '', '$kode_jadwal')");
-mysqli_query($host, "INSERT INTO tb_jadwal VALUES('$kode_jadwal','$kode_kelas', '$nama')");
+mysqli_query($host, "INSERT INTO tb_jadwal VALUES('','$kode_kelas', '$nama')");
 
 echo mysqli_error($host);
 
