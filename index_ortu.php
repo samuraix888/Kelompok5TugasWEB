@@ -2,7 +2,7 @@
 @session_start();
 include "inc/koneksi.php";
 
-if(@$_SESSION['orangtua']==""){
+if(@$_SESSION['level']=="orangtua"){
     header("location:inc/login/login.php");
 }
 
@@ -93,7 +93,9 @@ if(@$_SESSION['orangtua']==""){
     <div class="card w-100">
   
   <div class="card-body" style="background-color: #eceeef;">
-    
+    <div class="text-center">
+    <img src="foto/frengki.jpg" style="max-width: 50%;" class="avatar img-circle img-thumbnail" alt="avatar">
+    </div>
     <?php 
     $q = mysqli_query($host, "SELECT * FROM tb_login where username='$_SESSION[orangtua]'");
     $d = mysqli_fetch_array($q);
@@ -101,9 +103,6 @@ if(@$_SESSION['orangtua']==""){
 		$nomor = 1;
 		$data = mysqli_fetch_array($query_mysql)
       ?>
-          <div class="text-center">
-      <?php  echo "<img src='assets/images/foto/$data[foto]' width='50%' height='70%'  img-thumbails />";?>
-      </div>
         <div class="card-text">
             <li>NIS  : <?= $data['nis'] ?></li>
             <li>NISN  : <?= $data['nisn'] ?></li>
@@ -118,26 +117,30 @@ if(@$_SESSION['orangtua']==""){
 <!--col 1-->
 
     <div class="col-6">
-    <center>
-      <h4>
-        <a  data-toggle="collapse" href="#collapse1" style="color:#000"><i class="fas fa-chevron-down">Pengumuman </i></a>
-      </h4>
-    </center>
-
+  
+      <h5 style="padding-bottom:4px">
+    Pengumuman
+       <!-- <a  data-toggle="collapse" href="#collapse1" style="color:#000"><i class="fas fa-chevron-down">Pengumuman </i></a>-->
+      </h5>
+    
   <div class="card w-100">
        
-        <div id="collapse1" class="panel-collapse collapse">
+        <!-- <div id="collapse1" class="panel-collapse collapse"-->
         <?php 
 		$query_mysql = mysqli_query($host, "SELECT * FROM tb_pengumuman")or die(mysqli_error($host));
 		$nomor = 1;
 		while($data = mysqli_fetch_array($query_mysql)){
     ?>
     
-    <td><?php echo $nomor++; ?>.</td>
-			<td><?php echo $data['pengumuman']; ?></td> <br>
+   
+			<td><a  data-toggle="collapse" href="#collapse1" style="color:#000"><?php echo $data['judul']; ?></a></td>
+      <div id="collapse1" class="panel-collapse collapse">
+      <?php echo $data['pengumuman']; ?> </div>
+
+     
       <?php } ?>
    
-        </div>
+       
   </div>
   </div>
     

@@ -18,7 +18,7 @@ if(@$_SESSION['siswa']==""){
     <title>SMA 5 Jember</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link rel="stylesheet" href="../../documentation/css/main.css">
+    <link rel="stylesheet" href="documentation/css/main.css">
     <style>
     body{
       background-color: white;
@@ -44,39 +44,20 @@ if(@$_SESSION['siswa']==""){
 <!--start navbar-->
 
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #62d44d ;">
-    
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#" style="color: white ;">Beranda <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="inc/absensi/index_absen.php" style="color: white;">Absen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="inc/jadwal/index_jadwal.php" style="color: white;">Jadwal</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="inc/nilai/index_nilai.php" style="color: white;">Nilai</a>
-      </li>
-    </ul>
 
-    <form class="form-inline my-2 my-lg-0">
-   
-    <?php echo $_SESSION['siswa']; ?>
-    <button type="button" class="btn btn-outline-success my-2 my-sm-0" ><a href="inc/login/logout.php">Keluar</a></button>
-    </form>
-
-    
-    
+<nav class="navbar navbar-dark py-0 bg-primary navbar-expand-lg py-md-0">
+    <button class="navbar-toggler mt-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item py-0"><a href="index.php" class="nav-link">Beranda</a></li>
+            <li class="nav-item py-0"><a href="index_absen.php" class="nav-link">Absensi</a></li>
+            <li class="nav-item py-0"><a href="" class="nav-link">Nilai</a></li>
+            <li class="nav-item py-0"><a href="#" class="nav-link">Jadwal</a></li>
         
-        
-  </div>
-
+        </ul>
+    </div>
 </nav>
 <!--end of navbar-->
 
@@ -84,7 +65,7 @@ if(@$_SESSION['siswa']==""){
 <div class="container pt-4">
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-7">
         <center>
           <h4>Biodata</h4>
            
@@ -92,16 +73,17 @@ if(@$_SESSION['siswa']==""){
     <div class="card w-100">
   
   <div class="card-body" style="background-color: #eceeef;">
+   
     <?php 
     $q = mysqli_query($host, "SELECT * FROM tb_login where username='$_SESSION[siswa]'");
     $d = mysqli_fetch_array($q);
 		$query_mysql = mysqli_query($host, "SELECT * FROM tb_siswa where nis='$d[username]'")or die(mysqli_error($host));
-		$nomor = 1;
+		$nomor = 1;  
     $data = mysqli_fetch_array($query_mysql)
       ?>
-      <div class="text-center">
-      <?php  echo "<img src='assets/images/foto/$data[foto]' width='50%' height='70%'  img-thumbails />";?>
-      </div>
+       <div class="text-center">
+    <?php echo "<img src='assets/images/foto/$data[foto]' width='70' height='90' />";?>
+    </div>
         <div class="card-text">
             <li>NIS  : <?= $data['nis'] ?></li>
             <li>NISN  : <?= $data['nisn'] ?></li>
@@ -115,30 +97,46 @@ if(@$_SESSION['siswa']==""){
     </div>
 <!--col 1-->
 
-    <div class="col-6">
+    <div class="col-5">
     <center>
       <h4>
-        <a  data-toggle="collapse" href="#collapse1" style="color:#000"><i class="fas fa-chevron-down">Pengumuman </i></a>
+      <div class="row responsive">
+        <div class="col-sm-8">
+           <div class="float-left" style="font-size: 20px">
+            Pengumuman 
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="float-right">
+            <a  data-toggle="collapse" href="#collapse1" style="color:#000"> <i class="fas fa-chevron-down"></i></a>
+            </div>
+        </div>
+      </div>
+        
       </h4>
     </center>
 
-  <div class="card w-100">
+    <div class="card w-100">
        
-        <div id="collapse1" class="panel-collapse collapse">
-        <?php 
-		$query_mysql = mysqli_query($host, "SELECT * FROM tb_pengumuman")or die(mysqli_error($host));
-		$nomor = 1;
-		while($data = mysqli_fetch_array($query_mysql)){
-    ?>
-    
-    <td><?php echo $nomor++; ?>.</td>
-			<td><?php echo $data['pengumuman']; ?></td> <br>
-      <?php } ?>
+       <!-- <div id="collapse1" class="panel-collapse collapse"-->
+       <?php 
+   $query_mysql = mysqli_query($host, "SELECT * FROM tb_pengumuman")or die(mysqli_error($host));
+   $nomor = 1;
+   while($data = mysqli_fetch_array($query_mysql)){
+   ?>
    
-        </div>
-  </div>
-  </div>
+  
+     <td><a  data-toggle="collapse" href="#collapse1" style="color:#000"><?php echo $data['judul']; ?></a></td>
+     <div id="collapse1" class="panel-collapse collapse">
+     <?php echo $data['pengumuman']; ?> </div>
+
     
+     <?php } ?>
+  
+      
+ </div>
+ </div>
+   
 </div>
 <!--col 2-->
 <!--end of row-->
