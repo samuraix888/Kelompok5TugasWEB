@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2019 at 03:11 PM
+-- Generation Time: Jan 06, 2020 at 12:07 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sementara`
+-- Database: `sma5`
 --
 
 -- --------------------------------------------------------
@@ -34,15 +34,6 @@ CREATE TABLE `tbd_siswa` (
   `tahun_ajaran` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbd_siswa`
---
-
-INSERT INTO `tbd_siswa` (`nis`, `kode_kelas`, `tahun_ajaran`) VALUES
-('00001', 'XA1', '2019-2020'),
-('00002', 'XA1', '2019-2020'),
-('00003', 'XA1', '2019-2020');
-
 -- --------------------------------------------------------
 
 --
@@ -50,10 +41,12 @@ INSERT INTO `tbd_siswa` (`nis`, `kode_kelas`, `tahun_ajaran`) VALUES
 --
 
 CREATE TABLE `tb_absen` (
+  `id_absen` int(5) NOT NULL,
   `nis` varchar(5) NOT NULL,
   `kode_kelas` varchar(5) NOT NULL,
   `kode_status` varchar(1) NOT NULL DEFAULT 'A',
-  `kode_jam` int(10) NOT NULL
+  `kode_jam` int(10) NOT NULL,
+  `tanggal_absen` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,6 +56,7 @@ CREATE TABLE `tb_absen` (
 --
 
 CREATE TABLE `tb_izin` (
+  `id_izin` int(4) NOT NULL,
   `nis` varchar(5) NOT NULL,
   `tanggal` date NOT NULL,
   `kode_status` varchar(1) NOT NULL,
@@ -70,13 +64,6 @@ CREATE TABLE `tb_izin` (
   `foto1` varchar(35) NOT NULL,
   `foto2` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_izin`
---
-
-INSERT INTO `tb_izin` (`nis`, `tanggal`, `kode_status`, `keterangan`, `foto1`, `foto2`) VALUES
-('00001', '2019-11-18', 'I', 'Test', '11822388_128673960807228_6455055463', 'image.jpg');
 
 -- --------------------------------------------------------
 
@@ -88,15 +75,6 @@ CREATE TABLE `tb_jadwal` (
   `kode_jadwal` varchar(6) NOT NULL,
   `unggah_jadwal` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_jadwal`
---
-
-INSERT INTO `tb_jadwal` (`kode_jadwal`, `unggah_jadwal`) VALUES
-('JXA1', ''),
-('JXA2', ''),
-('JXA3', '');
 
 -- --------------------------------------------------------
 
@@ -135,19 +113,60 @@ CREATE TABLE `tb_kelas` (
   `kode_jadwal` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tb_kelas`
+-- Table structure for table `tb_login`
 --
 
-INSERT INTO `tb_kelas` (`kode_kelas`, `kelas`, `kode_jadwal`) VALUES
-('XA1', 'X IPA 1', 'JXA1'),
-('XA2', 'X IPA 2', 'JXA2'),
-('XA3', 'X IPA 3', 'JXA3'),
-('XA4', 'X IPA 4', 'JXA4'),
-('XA5', 'X IPA 5', 'JXA5'),
-('XS1', 'X IPS 1', 'JXS1'),
-('XS2', 'X IPS 2', 'JXS2'),
-('XS3', 'X IPS 3', 'JXS3');
+CREATE TABLE `tb_login` (
+  `username` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL,
+  `level` varchar(10) NOT NULL,
+  `aksesdata` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mapel`
+--
+
+CREATE TABLE `tb_mapel` (
+  `kode_mapel` varchar(7) NOT NULL,
+  `mapel` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_mapel`
+--
+
+INSERT INTO `tb_mapel` (`kode_mapel`, `mapel`) VALUES
+('AGM', 'Agama'),
+('BIG', 'Bahasa Inggris'),
+('BIND', 'Bahasa Indonesia'),
+('BIO', 'Biologi'),
+('BJW', 'Bahasa Jawa'),
+('FIS', 'Fisika'),
+('KIM', 'Kimia'),
+('MAT', 'Matematika'),
+('PJOK', 'Pendidikan Jasmani'),
+('PKN', 'Pendidikan Kewarganegaraa'),
+('SEJ', 'Sejarah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_nilai`
+--
+
+CREATE TABLE `tb_nilai` (
+  `id_nilai` int(3) NOT NULL,
+  `nis` varchar(5) NOT NULL,
+  `kode_mapel` varchar(7) NOT NULL,
+  `pengetahuan` varchar(3) NOT NULL,
+  `ketrampilan` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -157,16 +176,9 @@ INSERT INTO `tb_kelas` (`kode_kelas`, `kelas`, `kode_jadwal`) VALUES
 
 CREATE TABLE `tb_pengumuman` (
   `kode_pengumuman` int(5) NOT NULL,
+  `judul` text NOT NULL,
   `pengumuman` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_pengumuman`
---
-
-INSERT INTO `tb_pengumuman` (`kode_pengumuman`, `pengumuman`) VALUES
-(1, 'lol'),
-(2, 'coba buka www.google.com');
 
 -- --------------------------------------------------------
 
@@ -183,18 +195,8 @@ CREATE TABLE `tb_siswa` (
   `jenis_kelamin` varchar(9) NOT NULL,
   `agama` varchar(7) NOT NULL,
   `alamat` varchar(50) NOT NULL,
-  `foto` varchar(35) NOT NULL
+  `foto` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_siswa`
---
-
-INSERT INTO `tb_siswa` (`nis`, `nisn`, `nama_siswa`, `tempat`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `foto`) VALUES
-('00001', '123', 's', 'a', '2019-11-18', 'L', 'Islam', 'jember', '  '),
-('00002', '456', 'f', 'a', '2019-12-02', 'P', 'Islam', 'jember', ''),
-('00003', '789', 'g', 'g', '2019-12-01', 'L', 'Kristen', 'jember', ''),
-('00004', '012', 'freng', 'jelbuk', '2019-12-01', 'P', 'budha', 'Jember', '');
 
 -- --------------------------------------------------------
 
@@ -232,10 +234,17 @@ ALTER TABLE `tbd_siswa`
 -- Indexes for table `tb_absen`
 --
 ALTER TABLE `tb_absen`
+  ADD PRIMARY KEY (`id_absen`),
   ADD KEY `nis` (`nis`),
   ADD KEY `kode_kelas` (`kode_kelas`),
   ADD KEY `kode_status` (`kode_status`),
   ADD KEY `kode_jam` (`kode_jam`);
+
+--
+-- Indexes for table `tb_izin`
+--
+ALTER TABLE `tb_izin`
+  ADD PRIMARY KEY (`id_izin`);
 
 --
 -- Indexes for table `tb_jadwal`
@@ -254,6 +263,24 @@ ALTER TABLE `tb_jam`
 --
 ALTER TABLE `tb_kelas`
   ADD PRIMARY KEY (`kode_kelas`);
+
+--
+-- Indexes for table `tb_login`
+--
+ALTER TABLE `tb_login`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `tb_mapel`
+--
+ALTER TABLE `tb_mapel`
+  ADD PRIMARY KEY (`kode_mapel`);
+
+--
+-- Indexes for table `tb_nilai`
+--
+ALTER TABLE `tb_nilai`
+  ADD PRIMARY KEY (`id_nilai`);
 
 --
 -- Indexes for table `tb_pengumuman`
@@ -278,10 +305,28 @@ ALTER TABLE `tb_status`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_absen`
+--
+ALTER TABLE `tb_absen`
+  MODIFY `id_absen` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_izin`
+--
+ALTER TABLE `tb_izin`
+  MODIFY `id_izin` int(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_nilai`
+--
+ALTER TABLE `tb_nilai`
+  MODIFY `id_nilai` int(3) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_pengumuman`
 --
 ALTER TABLE `tb_pengumuman`
-  MODIFY `kode_pengumuman` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode_pengumuman` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
