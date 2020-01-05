@@ -2,12 +2,11 @@
 @session_start();
 include "inc/koneksi.php";
 
-if(@$_SESSION['siswa']==""){
+if(@$_SESSION['orangtua']==""){
     header("location:inc/login/login.php");
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +42,6 @@ if(@$_SESSION['siswa']==""){
 
 <!--start navbar-->
 
-
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #62d44d ;">
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,23 +50,26 @@ if(@$_SESSION['siswa']==""){
   <div class="collapse navbar-collapse" id="navbarSupportedContent" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="color: white ;">Beranda <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index_ortu.php" style="color: white ;">Beranda <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="inc/absensi/index_absen.php" style="color: white;">Absen</a>
+        <a class="nav-link" href="inc/absensi/index_ortu_absen.php" style="color: white;">Absen</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="inc/jadwal/index_jadwal.php" style="color: white;">Jadwal</a>
+        <a class="nav-link" href="inc/jadwal/index_ortu_jadwal.php" style="color: white;">Jadwal</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="inc/nilai/index_nilai.php" style="color: white;">Nilai</a>
+        <a class="nav-link" href="inc/nilai/index_ortu_nilai.php" style="color: white;">Nilai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="inc/ijin/index_ortu_izin.php"" style="color: white;">Perizinan</a>
       </li>
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
    
-    <?php echo $_SESSION['siswa']; ?>
-    <button type="button" class="btn btn-outline-success my-2 my-sm-0" ><a href="inc/login/logout.php">Keluar</a></button>
+    <?php echo $_SESSION['orangtua']; ?>
+      <a href="inc/login/logout.php"><button type="button" class="btn btn-outline-success my-2 my-sm-0" >Keluar</button></a>
     </form>
 
     
@@ -92,14 +93,15 @@ if(@$_SESSION['siswa']==""){
     <div class="card w-100">
   
   <div class="card-body" style="background-color: #eceeef;">
+    
     <?php 
-    $q = mysqli_query($host, "SELECT * FROM tb_login where username='$_SESSION[siswa]'");
+    $q = mysqli_query($host, "SELECT * FROM tb_login where username='$_SESSION[orangtua]'");
     $d = mysqli_fetch_array($q);
-		$query_mysql = mysqli_query($host, "SELECT * FROM tb_siswa where nis='$d[username]'")or die(mysqli_error($host));
+		$query_mysql = mysqli_query($host, "SELECT * FROM tb_siswa where nis='$d[aksesdata]'")or die(mysqli_error($host));
 		$nomor = 1;
-    $data = mysqli_fetch_array($query_mysql)
+		$data = mysqli_fetch_array($query_mysql)
       ?>
-      <div class="text-center">
+          <div class="text-center">
       <?php  echo "<img src='assets/images/foto/$data[foto]' width='50%' height='70%'  img-thumbails />";?>
       </div>
         <div class="card-text">
@@ -165,6 +167,3 @@ if(@$_SESSION['siswa']==""){
 <!--end of js-->
 
 </html>
-<?php
-
-?>
